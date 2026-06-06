@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx prisma *)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma db push)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npx prisma db seed)",
+      "Bash(DATABASE_URL=\"file:./dev.db\" npm run build)",
+      "Bash(sed -i '' 's/import type { NextConfig } from \"next\";//' /Users/main/website/next.config.mjs)",
+      "Bash(sed -i '' 's/const nextConfig: NextConfig = {/const nextConfig = {/' /Users/main/website/next.config.mjs)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("user") // "user" | "seller" | "admin"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  purchases Purchase[]
+  agents    Agent[]
+}
+
+model Agent {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  tagline     String
+  description String
+  category    String
+  price       Float
+  priceType   String   @default("one-time") // "one-time" | "monthly" | "yearly"
+  techStack   String   // JSON array as string
+  features    String   // JSON array as string
+  useCases    String   // JSON array as string
+  demoUrl     String?
+  imageUrl    String?
+  sellerId    String
+  seller      User     @relation(fields: [sellerId], references: [id])
+  featured    Boolean  @default(false)
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  purchases   Purchase[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  content     String
+  category    String
+  tags        String   // JSON array as string
+  imageUrl    String?
+  authorName  String
+  authorAvatar String?
+  readTime    Int      // minutes
+  featured    Boolean  @default(false)
+  publishedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Purchase {
+  id        String   @id @default(cuid())
+  userId    String
+  agentId   String
+  amount    Float
+  status    String   @default("pending") // "pending" | "completed" | "refunded"
+  stripeId  String?
+  user      User     @relation(fields: [userId], references: [id])
+  agent     Agent    @relation(fields: [agentId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
