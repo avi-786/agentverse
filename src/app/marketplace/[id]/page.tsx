@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import BuyButton from "@/components/BuyButton";
 
+export const dynamic = "force-dynamic";
+
 async function getAgent(slug: string): Promise<Agent | null> {
   const agent = await prisma.agent.findUnique({
     where: { slug },

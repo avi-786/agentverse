@@ -7,6 +7,8 @@ import BlogCard from "@/components/BlogCard";
 import NewsletterSection from "@/components/NewsletterSection";
 import type { Agent, Post } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 async function getFeaturedAgents(): Promise<Agent[]> {
   const agents = await prisma.agent.findMany({
     where: { featured: true },

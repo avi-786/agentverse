@@ -2,6 +2,8 @@ import { prisma } from "@/lib/db";
 import { parseJsonField } from "@/lib/utils";
 import BlogCard from "@/components/BlogCard";
 import type { Post, PostCategory } from "@/types";
+
+export const dynamic = "force-dynamic";
 import { POST_CATEGORIES } from "@/types";
 import Link from "next/link";
 import NewsletterSection from "@/components/NewsletterSection";

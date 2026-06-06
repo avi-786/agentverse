@@ -7,6 +7,8 @@ import type { Post } from "@/types";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import NewsletterSection from "@/components/NewsletterSection";
 
+export const dynamic = "force-dynamic";
+
 async function getPost(slug: string): Promise<Post | null> {
   const post = await prisma.post.findUnique({ where: { slug } });
   if (!post) return null;

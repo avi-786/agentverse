@@ -2,6 +2,8 @@ import { prisma } from "@/lib/db";
 import { parseJsonField } from "@/lib/utils";
 import AgentCard from "@/components/AgentCard";
 import type { Agent, AgentCategory } from "@/types";
+
+export const dynamic = "force-dynamic";
 import { AGENT_CATEGORIES } from "@/types";
 import Link from "next/link";
 import { Search } from "lucide-react";
